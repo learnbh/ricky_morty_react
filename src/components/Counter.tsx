@@ -16,6 +16,7 @@ export default function Counter(prevCounter:CounterProps)
     function decCounter(){
         setCounter(counter-1);
     }
+
     return (
         <>
             <p>Count: {counter}</p>
