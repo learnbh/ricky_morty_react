@@ -1,11 +1,11 @@
 import './App.css';
-import {response} from './RaMResponse';
-import CharacterCard from "./CharacterCard.tsx";
+import {response} from '../data/RaMResponse.ts';
+import CharacterCard from "./components/CharacterCard.tsx";
 import {Route, Routes} from "react-router-dom";
-import NavBar from "./Navbar.tsx";
-import CharacterDetailCard from "./CharacterDetailCard.tsx";
-import Characters from "./Characters.tsx";
-import Counter from "./Counter.tsx";
+import NavBar from "./components/Navbar.tsx";
+import CharacterDetailCard from "./components/CharacterDetailCard.tsx";
+import Characters from "./components/Characters.tsx";
+import Counter from "./components/Counter.tsx";
 import {useState} from "react";
 
 function App() {
@@ -39,8 +39,7 @@ function App() {
                         image={c.image}
                     />
                 ))}></Route>
-                <Route path={"/characters/:id"} element={<CharacterDetailCard allCharactersProp={response}/>}></Route>
-                <Route path={"/register"} element={<h1>Du bist jetzt ausgeloggt, Tschüßi ;)</h1>}></Route>
+                <Route path={"/character/:id"} element={<CharacterDetailCard allCharactersProp={response}/>}></Route>
                 <Route path={"/logout"} element={<h1>Du bist jetzt ausgeloggt, Tschüßi ;)</h1>}></Route>
             </Routes>
         </>
