@@ -24,7 +24,7 @@ export type CharacterType = {
 export default function CharacterCard(characterProps:Readonly <CharacterType>){
     const routeTo = useNavigate()
     function routeToDetailCard(){
-        routeTo("/characters/"+characterProps.id);
+        routeTo("/character/"+characterProps.id);
     }
     return (
         <>

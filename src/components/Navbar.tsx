@@ -11,12 +11,11 @@ export default function NavBar(){
     return(
         <>
             <ul style={{listStyle:"none"}}>
+                <li><button onClick={routeToLogoutPage}>Logout</button></li>
                 <li><Link to={"/"}>Dashboard</Link></li>
                 <li><Link to={"/counter"}>Counter</Link></li>
                 <li><Link to={"/characters"}>Characters</Link></li>
                 <li><Link to={"/character"}>Character</Link></li>
-                <li><Link to={"/register"}>Registrierung</Link></li>
-                <li><button onClick={routeToLogoutPage}>Logout</button></li>
             </ul>
         </>
     )
