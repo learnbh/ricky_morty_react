@@ -18,25 +18,27 @@ type APIRequest = {
 
 export default function Characters(){
 
-    //const [allCharacters] = useState(response);
+    const [allCharacters, setAllCharacters] = useState<CharacterType[]>([]);
     const [characters, setCharacters] = useState<CharacterType[]>([]);
 
     function handleSearchInput(input:string){
-        setCharacters(characters.filter(c => c.name.toLocaleUpperCase().includes(input.toLocaleUpperCase())));
+        setCharacters(allCharacters.filter(c => c.name.toLocaleUpperCase().includes(input.toLocaleUpperCase())));
     }
     // Axios
     function loadAllCharacters() {
         axios.get("https://rickandmortyapi.com/api/character")
-            .then((response)=> setCharacters(response.data.results))
+            .then((response)=> {
+                setCharacters(response.data.results);
+                setAllCharacters(response.data.results);
+            })
             .catch((error)=> console.log(error));
-
     }
     useEffect(()=> {
-        loadAllCharacters()
+        loadAllCharacters();
     }, []);
 
     // Post faken mit https://regres.in
-    const [testCharacter, setTestCharacter] = useState<APIRequest>({
+    const [testCharacter] = useState<APIRequest>({
         name:"testName",
         job:"testJob"
     })
@@ -52,7 +54,7 @@ export default function Characters(){
     return(
         <>
             <button onClick={fakePostCharacter}>Fake adding a fake character</button>
-            <input onChange={(e) => handleSearchInput(e.target.value)}/>
+            <input className="m-2 border-1 border-white focus:border-pink-600"  onChange={(e) => handleSearchInput(e.target.value)}/>
             <div>{characters.map( c => (
                 <CharacterCard
                     key={c.id}
