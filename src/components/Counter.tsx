@@ -1,13 +1,13 @@
+import type {CounterType} from "../types";
 import {useState} from "react";
 
 type CounterProps = {
-    prevCounter: number,
-    setPrevCounter: (prevCounter:number)=>void
+    counterType: CounterType;
 }
 
-export default function Counter(prevCounter:CounterProps)
+export default function Counter(counterProps:CounterProps)
 {
-    const [counter, setCounter] = useState<number>(prevCounter.prevCounter);
+    const [counter, setCounter] = useState<number>(counterProps.counterType.prevCounter);
 
     function incCounter(){
         setCounter(counter+1);
