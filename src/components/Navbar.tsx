@@ -11,7 +11,9 @@ export default function NavBar(){
     return(
         <>
             <ul style={{listStyle:"none"}}>
-                <li><button onClick={routeToLogoutPage}>Logout</button></li>
+                <li>
+                    <button onClick={routeToLogoutPage}  className="border-0 rounded-2xl pl-2 pb-1 pr-2">Logout</button>
+                </li>
                 <li><Link to={"/"}>Dashboard</Link></li>
                 <li><Link to={"/counter"}>Counter</Link></li>
                 <li><Link to={"/characters"}>Characters</Link></li>

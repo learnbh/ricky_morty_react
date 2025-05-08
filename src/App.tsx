@@ -2,34 +2,39 @@ import './App.css';
 import {response} from '../data/RaMResponse.ts';
 import CharacterCard from "./components/CharacterCard.tsx";
 import {Route, Routes} from "react-router-dom";
-import NavBar from "./components/Navbar.tsx";
 import CharacterDetailCard from "./components/CharacterDetailCard.tsx";
 import Characters from "./components/Characters.tsx";
 import Counter from "./components/Counter.tsx";
+import RootLayout from "./layouts/rootLayout.tsx";
 import {useState} from "react";
+import type {CounterType} from "./types";
+import Title from "./components/Title.tsx";
 
 function App() {
     const [counter, setCounter] = useState(0);
-
+    const counterProp:CounterType = {
+        prevCounter:  counter,
+        setPrevCounter: handleCounter
+    }
     function handleCounter(input:number){
         setCounter(input)
     }
 
     return (
         <>
-            <header>
-                <NavBar/>
-            </header>
+            <Title counterType={counterProp}/>
+            <RootLayout>
+            </RootLayout>
             <Routes>
-                <Route path={"/"} element={<p><h1>Welcome to my page :)</h1><h2>Counter: {counter}</h2></p>}></Route>
+                <Route path={"/"} ></Route>
                 <Route path={"/counter"}
                        element={
                            <Counter
-                               prevCounter = {counter}
-                               setPrevCounter ={handleCounter}
+                               counterType={counterProp}
                            />
                        }
-                ></Route>
+                >
+                </Route>
                 <Route path={"/characters"} element = {<Characters/>}></Route>
                 <Route path={"/character"} element={response.map( c => (
                     <CharacterCard
